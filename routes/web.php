@@ -32,8 +32,15 @@ Route::prefix('kategori')->group(function () {
 
 Route::prefix('produk')->group(function () {
     Route::get('/', [ProdukController::class, 'index']);
+    Route::post('/store', [ProdukController::class, 'store']);
+    Route::get('/get', [ProdukController::class, 'get']);
 });
 
 Route::prefix('type')->group(function () {
     Route::get('/', [TypeProdukController::class, 'index']);
+    Route::get('/get', [TypeProdukController::class, 'getData']);
+    Route::get('/show/{id}', [TypeProdukController::class, 'showData']);
+    Route::delete('/delete/{id}', [TypeProdukController::class, 'deleteData']);
+    Route::put('/update/{id}', [TypeProdukController::class, 'update']);
+    Route::post('/create', [TypeProdukController::class, 'create']);
 });
