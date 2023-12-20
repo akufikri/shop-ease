@@ -19,7 +19,6 @@ class Produk extends Model
         'expired',
         'type_id',
     ];
-
     protected $table = 'produks';
     public function kategori()
     {

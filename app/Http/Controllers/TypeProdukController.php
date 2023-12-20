@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TypeProduk;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class TypeProdukController extends Controller
 {
@@ -18,7 +19,7 @@ class TypeProdukController extends Controller
             'logo' => 'image|mimes:png,jpg|max:2048'
         ]);
 
-        $kategori = TypeProduk::create([
+        $data = TypeProduk::create([
             'name' => $request->input('name'),
             'logo' => null,
         ]);
@@ -28,8 +29,8 @@ class TypeProdukController extends Controller
             $filename = uniqid('logo_') . '.' . $logo->getClientOriginalExtension();
             $logo->move(public_path('LogoType/'), $filename);
 
-            $kategori->logo = $filename;
-            $kategori->save();
+            $data->logo = $filename;
+            $data->save();
         }
 
         return response()->json([
@@ -37,9 +38,86 @@ class TypeProdukController extends Controller
             'status' => 200
         ]);
     }
+
     public function getData()
     {
         $data = TypeProduk::all();
+
+        return DataTables::of($data)
+            ->addColumn('action', function ($data) {
+                return '<button class="btn btn-sm btn-primary">Edit</button> <button class="btn btn-sm btn-danger">Delete</button>';
+            })
+            ->addColumn('logo', function ($data) {
+                return asset('LogoType/' . $data->logo);
+            })
+            ->make(true);
+    }
+    public function showData($id)
+    {
+        $data = TypeProduk::find($id);
         return response()->json($data);
+    }
+
+    public function deleteData($id)
+    {
+        $typeProduk = TypeProduk::find($id);
+
+        if ($typeProduk) {
+            // Delete the associated logo file
+            if ($typeProduk->logo) {
+                $logoPath = public_path('LogoType/') . $typeProduk->logo;
+                if (file_exists($logoPath)) {
+                    unlink($logoPath);
+                }
+            }
+
+            $typeProduk->delete();
+
+            return response()->json([
+                'message' => 'Record deleted successfully.',
+                'status' => 200
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Record not found.',
+                'status' => 404
+            ], 404);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'edit_name' => 'required',
+            'edit_logo' => 'image|mimes:png,jpg|max:2048' // Adjust max file size as needed
+        ]);
+
+        $type =  TypeProduk::find($id);
+
+        if (!$type) {
+            return response()->json(['message' => 'Category not found.'], 404);
+        }
+
+        $type->name = $request->input('edit_name');
+
+        if ($request->hasFile('edit_logo')) {
+            $logo = $request->file('edit_logo');
+            $filename = uniqid('logo_') . '.' . $logo->getClientOriginalExtension();
+            $logo->move(public_path('LogoType/'), $filename);
+
+            // Delete old logo file if it exists
+            if ($type->logo) {
+                unlink(public_path('LogoType/') . $type->logo);
+            }
+
+            $type->logo = $filename;
+        }
+
+        $type->save();
+
+        return response()->json([
+            'message' => 'Record updated successfully.',
+            'status' => 200
+        ]);
     }
 }
