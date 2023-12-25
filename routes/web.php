@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\authController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TypeProdukController;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/login', [authController::class, 'login']);
 
 Route::get('/', function () {
     return view('backend.page.dashboard.index');
@@ -34,6 +37,9 @@ Route::prefix('produk')->group(function () {
     Route::get('/', [ProdukController::class, 'index']);
     Route::post('/store', [ProdukController::class, 'store']);
     Route::get('/get', [ProdukController::class, 'get']);
+    Route::delete('/delete/{id}', [ProdukController::class, 'destroy']);
+    Route::put('/update/{id}', [ProdukController::class, 'update']);
+    Route::get('/show/{id}', [ProdukController::class, 'edit']);
 });
 
 Route::prefix('type')->group(function () {
