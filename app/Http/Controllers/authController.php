@@ -61,11 +61,10 @@ class authController extends Controller
             'password.required' => 'Please enter your password.',
         ]);
 
-
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/');
+            return redirect('/dashboard');
         }
 
         return redirect()->route('login')->with('error', 'Invalid credentials');
