@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [authController::class, 'login']);
+Route::get('/login', [authController::class, 'login'])->name('login');
+Route::post('/login/proccess', [authController::class, 'processLogin']);
+
+Route::get('/register', [authController::class, 'register']);
+Route::post('/register/proccess', [authController::class, 'processRegistration']);
+
+Route::get('/logout', [authController::class, 'logout']);
 
 Route::get('/', function () {
     return view('backend.page.dashboard.index');
