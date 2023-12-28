@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -107,6 +117,82 @@
                     <h5 class="text-center mt-14 text-2xl font-medium">Not Banner</h5>
                 </div>
             </div>
+
+            <div class="mt-10">
+                <div class="flex flex-col bg-white m-auto p-auto">
+                    <div class="flex overflow-x-scroll pb-10 hide-scroll-bar">
+                        <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 ">
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                            <div class="inline-block">
+                                <div
+                                    class="w-24 h-24 border-2 max-w-xs overflow-hidden   bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
     {{-- content --}}
