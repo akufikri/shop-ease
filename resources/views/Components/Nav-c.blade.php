@@ -2,14 +2,59 @@
     <div class="max-w-screen-xl px-4 py-3 mx-auto">
         <div class="flex justify-end">
             <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-                @foreach ($menuItems as $menuItem)
+                @if (Auth::check())
                     <li>
-                        <a href="{{ $menuItem['url'] }}"
-                            class="text-gray-900 dark:text-white hover:underline {{ request()->is($menuItem['url']) ? 'font-bold' : '' }}">
-                            {{ $menuItem['name'] }}
-                        </a>
+                        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
+                                data-dropdown-placement="bottom">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full"
+                                    src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                                    alt="user photo">
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                                id="user-dropdown">
+                                <div class="px-4 py-3">
+                                    <span
+                                        class="block text-sm text-gray-900 dark:text-white">{{ Auth::user()->name }}</span>
+                                    <span
+                                        class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ Auth::user()->email }}</span>
+                                </div>
+                                <ul class="py-2" aria-labelledby="user-menu-button">
+                                    @if (Auth::user()->role_id == 1)
+                                        <li>
+                                            <a href="/dashboard"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="/"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                                        </li>
+                                    @endif
+                                    <li>
+                                        <a href="/logout"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
+                                            out</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
                     </li>
-                @endforeach
+                @else
+                    @foreach ($menuItems as $menuItem)
+                        <li>
+                            <a href="{{ $menuItem['url'] }}"
+                                class="text-gray-900 dark:text-white hover:underline {{ request()->is($menuItem['url']) ? 'font-bold' : '' }}">
+                                {{ $menuItem['name'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
         </div>
     </div>

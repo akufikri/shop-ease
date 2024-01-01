@@ -4,6 +4,7 @@ use App\Http\Controllers\authController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\frontend;
 use App\Http\Controllers\TypeProdukController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,29 +25,17 @@ Route::get('/register', [authController::class, 'register']);
 Route::post('/register/proccess', [authController::class, 'processRegistration']);
 Route::get('/logout', [authController::class, 'logout']);
 
-Route::get('/', function () {
-    return view('frontend.template');
-});
+Route::get('/', [frontend\HomeController::class, 'index']);
 
 Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::prefix('kategori')->group(function () {
         Route::get('/', [KategoriController::class, 'index']);
-        Route::get('/get', [KategoriController::class, 'getData']);
-        Route::get('/show/{id}', [KategoriController::class, 'showData']);
-        Route::delete('/delete/{id}', [KategoriController::class, 'deleteData']);
-        Route::put('/update/{id}', [KategoriController::class, 'update']);
-        Route::post('/create', [KategoriController::class, 'create']);
     });
 
     Route::prefix('produk')->group(function () {
         Route::get('/', [ProdukController::class, 'index']);
-        Route::post('/store', [ProdukController::class, 'store']);
-        Route::get('/get', [ProdukController::class, 'get']);
-        Route::delete('/delete/{id}', [ProdukController::class, 'destroy']);
-        Route::put('/update/{id}', [ProdukController::class, 'update']);
-        Route::get('/show/{id}', [ProdukController::class, 'edit']);
     });
 
     Route::prefix('type')->group(function () {
@@ -58,3 +47,16 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
         Route::post('/create', [TypeProdukController::class, 'create']);
     });
 });
+
+// public
+Route::get('/kategori/get', [KategoriController::class, 'getData']);
+Route::get('/kategori/show/{id}', [KategoriController::class, 'showData']);
+Route::delete('/kategori/delete/{id}', [KategoriController::class, 'deleteData']);
+Route::put('/kategori/update/{id}', [KategoriController::class, 'update']);
+Route::post('/kategori/create', [KategoriController::class, 'create']);
+
+Route::post('/produk/store', [ProdukController::class, 'store']);
+Route::get('/produk/get', [ProdukController::class, 'get']);
+Route::delete('/produk/delete/{id}', [ProdukController::class, 'destroy']);
+Route::put('/produk/update/{id}', [ProdukController::class, 'update']);
+Route::get('/produk/show/{id}', [ProdukController::class, 'edit']);
