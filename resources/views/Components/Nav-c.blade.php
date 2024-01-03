@@ -60,7 +60,7 @@
     </div>
 </nav>
 
-<nav class="bg-gray-50 border-gray-200 dark:bg-gray-900 px-8">
+<nav class="bg-gray-50 border-gray-200 dark:bg-gray-900 px-8 sm:block hidden md:block lg:block">
     <div class="flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
@@ -125,4 +125,32 @@
             <i class="fa-solid fa-cart-shopping"></i>
         </button>
     </div>
+</nav>
+
+<nav class="flex justify-center mb-10 bg-gray-50 py-3">
+    <ul class="flex gap-4">
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/produks">Produk</a>
+        </li>
+        <li>
+            <a href="#" class="flex" id="dropdownDefaultButton" data-dropdown-toggle="dropdown">
+                <span>Category
+                </span>
+                <svg class="w-2.5 h-2.5 ms-3 mt-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4" />
+                </svg>
+            </a>
+
+            <!-- Dropdown menu -->
+            <div id="dropdown"
+                class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <x-DynamicDropdown />
+            </div>
+        </li>
+    </ul>
 </nav>

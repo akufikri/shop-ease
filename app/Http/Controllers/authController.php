@@ -64,7 +64,12 @@ class authController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/dashboard');
+            $user = Auth::user();
+            if ($user->role_id === 2) {
+                return redirect('/');
+            } else {
+                return redirect('/dashboard');
+            }
         }
 
         return redirect()->route('login')->with('error', 'Invalid credentials');
