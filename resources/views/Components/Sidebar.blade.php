@@ -6,7 +6,7 @@
                    <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                </div>
                <div class="pull-left info">
-                   <p>Alexander Pierce</p>
+                   <p style="text-transform: uppercase">{{ Auth::user()->name }}</p>
                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                </div>
            </div>
@@ -61,7 +61,7 @@
                                <li><a href="#"><i class="fa fa-user-secret"></i> Admin</a></li>
                            </ul>
                        </li>
-                       <li><a href="#"><i class="fa fa-lock"></i> Role Auth</a></li>
+                       <li><a href="/admin/role"><i class="fa fa-lock"></i> Role Auth</a></li>
                    </ul>
                </li>
            </ul>

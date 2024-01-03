@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\frontend;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeProdukController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::post('/register/proccess', [authController::class, 'processRegistration']
 Route::get('/logout', [authController::class, 'logout']);
 
 Route::get('/', [frontend\HomeController::class, 'index']);
+Route::get('/produks', [frontend\ProdukController::class, 'index']);
 
 Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -40,12 +42,9 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 
     Route::prefix('type')->group(function () {
         Route::get('/', [TypeProdukController::class, 'index']);
-        Route::get('/get', [TypeProdukController::class, 'getData']);
-        Route::get('/show/{id}', [TypeProdukController::class, 'showData']);
-        Route::delete('/delete/{id}', [TypeProdukController::class, 'deleteData']);
-        Route::put('/update/{id}', [TypeProdukController::class, 'update']);
-        Route::post('/create', [TypeProdukController::class, 'create']);
     });
+
+    Route::get('/admin/role', [RoleController::class, 'index']);
 });
 
 // public
@@ -60,3 +59,9 @@ Route::get('/produk/get', [ProdukController::class, 'get']);
 Route::delete('/produk/delete/{id}', [ProdukController::class, 'destroy']);
 Route::put('/produk/update/{id}', [ProdukController::class, 'update']);
 Route::get('/produk/show/{id}', [ProdukController::class, 'edit']);
+
+Route::get('/get', [TypeProdukController::class, 'getData']);
+Route::get('/show/{id}', [TypeProdukController::class, 'showData']);
+Route::delete('/delete/{id}', [TypeProdukController::class, 'deleteData']);
+Route::put('/update/{id}', [TypeProdukController::class, 'update']);
+Route::post('/create', [TypeProdukController::class, 'create']);

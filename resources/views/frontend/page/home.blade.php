@@ -135,9 +135,9 @@
                     if (response && Array.isArray(response.data)) {
                         response.data.forEach(function(produk) {
                             var produkElement = `
-                    <div class="sm:h-auto border-2 rounded-md">
-                                <div class="overflow-hidden">
-                                    <img class="object-cover w-full max-w-64" src="https://placehold.co/400" alt="">
+                         <div class="sm:h-auto border-2 rounded-md">
+                                <div class="overflow-hidden p-4 ">
+                                    <img class="aspect-[2/2]" src="${produk['photo produk']}" alt="${produk.photo_produk}">
                                 </div>
                                 <div class="p-4 text-center">
                                     <span class="font-medium">${produk.produk_name}</span>
